@@ -2,83 +2,99 @@
   <div id="app">
     <div class="title">Battista 特殊赛 2021-11</div>
     <div class="content">
-          <div class="option-list">
-      
-      <div class="option" v-for="(car, index) in cars" :key="car">
-        <div class="option-car">{{ car }}</div>
-        <div class="radio-list">
-          <div
-            class="radio-item"
-            v-for="item in [-1, 0, 1]"
-            :key="item"
-            :class="'radio-item-' + item + form[index]"
-          >
-            <input
-              type="radio"
-              :id="car + item"
-              :value="item"
-              v-model="form[index]"
-            />
-            <label  class="radio-label" :for="car + item">{{
-              ["未解锁", "解锁未满星", "解锁满星"][item + 1]
-            }}</label>
+      <div class="option-list">
+        <div class="option" v-for="(car, index) in cars" :key="car">
+          <div class="option-car">{{ car }}</div>
+          <div class="radio-list">
+            <div
+              class="radio-item"
+              v-for="item in [-1, 0, 1]"
+              :key="item"
+              :class="'radio-item-' + item + form[index]"
+            >
+              <input
+                type="radio"
+                :id="car + item"
+                :value="item"
+                v-model="form[index]"
+              />
+              <label class="radio-label" :for="car + item">{{
+                ["未解锁", "解锁未满星", "解锁满星"][item + 1]
+              }}</label>
+            </div>
           </div>
         </div>
-      </div><div class="option">
-        <div class="option-car battista-car">巴蒂斯塔完赛后的星级</div>
-        <div class="radio-list battista-list">
-          <div
-            class="radio-item"
-            v-for="item in [0, 1, 2, 3, 4, 5, 6]"
-            :key="item"
-          >
-            <input
-              type="radio"
-              :id="'battista' + item"
-              :value="item"
-              v-model="battista"
-            />
-            <label class="radio-label" :for="'battista' + item">{{ item }}</label>
+        <div class="option">
+          <div class="option-car battista-car">巴蒂斯塔完赛后的星级</div>
+          <div class="radio-list battista-list">
+            <div
+              class="radio-item"
+              v-for="item in [0, 1, 2, 3, 4, 5, 6]"
+              :key="item"
+            >
+              <input
+                type="radio"
+                :id="'battista' + item"
+                :value="item"
+                v-model="battista"
+              />
+              <label class="radio-label" :for="'battista' + item">{{
+                item
+              }}</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="stage-list">
-      <div class="qr-area">
-        <img src="@/assets/qr.png" width="75" height="75" alt="">
-        <div class="qr-desc">扫一扫二维码，查看巴蒂特殊赛事！</div>
-      </div>
-      <div
-        class="stage"
-        :class="{ 'stage-unlock': stage.unlock }"
-        v-for="(stage, index) in stages.reverse()"
-        :key="index"
-      >
-        <div class="stage-label">阶段{{ 19-index  }} {{stageThemeCars[18-index]}}</div>
-        <div class="stage-status">{{ stage.unlock ? "解锁" : "未解锁" }} · {{stageConditionsDoor[18-index]}}</div>
-        <div class="stage-condition">
-          完成条件 {{ stage.stageConditionsTotalCurrent }}/{{
-            stageConditionsTotal[18-index]
-          }}
+      <div class="stage-list">
+        <div class="qr-area">
+          <img src="@/assets/qr.png" width="75" height="75" alt="" />
+          <div class="qr-desc">扫一扫二维码，查看巴蒂特殊赛事！</div>
+        </div>
+        <div
+          class="stage"
+          :class="{ 'stage-unlock': stage.unlock }"
+          v-for="(stage, index) in stages.reverse()"
+          :key="index"
+        >
+          <div class="stage-label">
+            阶段{{ 19 - index }} {{ stageThemeCars[18 - index] }}
+          </div>
+          <div class="stage-status">
+            {{ stage.unlock ? "解锁" : "未解锁" }} ·
+            {{ stageConditionsDoor[18 - index] }}
+          </div>
+          <div class="stage-condition">
+            完成条件 {{ stage.stageConditionsTotalCurrent }}/{{
+              stageConditionsTotal[18 - index]
+            }}
+          </div>
         </div>
       </div>
-    </div>
     </div>
     <div class="stage-image-wrapper">
-
-    <img src="@/assets/badi.jpg" alt="" class="stage-image">
+      <img src="@/assets/badi.jpg" alt="" class="stage-image" />
     </div>
     <div class="note">
-      <div class="note-item">version 1.1 修复了阶段描述倒转问题，添加了 <a target="_blank" href="https://www.yuque.com/asphalt9/global/special-events"> 阶段图</a></div>
-      <div class="note-item">version 1.0 简单粗暴地完成了基础功能</div>
+      <div class="note-item">
+        
+      <div class="note-item">version 1.3 2021-12-02 修改了阶段条件，第12-16关从[200, 230, 250, 275, 285]改为[180, 200, 220, 240, 270]</div>
+        version 1.1 修复了阶段描述倒转问题，添加了
+        <a
+          target="_blank"
+          href="https://www.yuque.com/asphalt9/global/special-events"
+        >
+          阶段图</a
+        >
       </div>
+      <div class="note-item">version 1.0 简单粗暴地完成了基础功能</div>
+    </div>
   </div>
 </template>
 
 <script>
 const cars = ['911GTS', 'DB11', '火神', 'GTR', '百年牛', 'FXX K', '狼崽', 'F1LM', 'W12', 'Imola', '阿卡龙', '毒药', 'C2', 'SSC']
-const stageConditionsDoor = [0, 10, 20, 30, 50, 75, 100, 115, 125, 140, 170, 200, 230, 250, 275, 285, 300, 320, 350]
-const stageThemeCars=['F1LM','W12','巴蒂','Imola','阿卡龙','巴蒂','毒药','C2','SSC','巴蒂','F1LM','W12','Imola','阿卡龙','毒药','C2','SSC','巴蒂','巴蒂排行']
+const stageConditionsDoor = [0, 10, 20, 30, 50, 75, 100, 115, 125, 140, 170, 180, 200, 220, 240, 270, 300, 320, 350]
+const stageThemeCars = ['F1LM', 'W12', '巴蒂', 'Imola', '阿卡龙', '巴蒂', '毒药', 'C2', 'SSC', '巴蒂', 'F1LM', 'W12', 'Imola', '阿卡龙', '毒药', 'C2', 'SSC', '巴蒂', '巴蒂排行']
 const stageConditions = [20, 20, 25, 20, 20, 25, 20, 20, 20, 25, 21, 21, 21, 21, 21, 23, 23, 34, 0]
 const stageConditionsTotal = stageConditions.slice()
 for (let i = 1; i < stageConditionsTotal.length; i++) {
@@ -96,24 +112,24 @@ export default {
       stageThemeCars
     }
   },
-  watch:{
-    form:function(newForm){
-      localStorage.setItem('form',JSON.stringify(newForm))
+  watch: {
+    form: function (newForm) {
+      localStorage.setItem('form', JSON.stringify(newForm))
     },
-    battista:function(newBattista){
-      
-      localStorage.setItem('battista',JSON.stringify(newBattista))
+    battista: function (newBattista) {
+
+      localStorage.setItem('battista', JSON.stringify(newBattista))
     }
   },
-  mounted(){
-    let form=localStorage.getItem('form')
-    let battista=localStorage.getItem('battista')
-    console.log(form,battista)
-    if(form){
-      this.form=JSON.parse(form)
+  mounted() {
+    let form = localStorage.getItem('form')
+    let battista = localStorage.getItem('battista')
+    console.log(form, battista)
+    if (form) {
+      this.form = JSON.parse(form)
     }
-    if(battista){
-      this.battista=JSON.parse(battista)
+    if (battista) {
+      this.battista = JSON.parse(battista)
     }
   },
   computed: {
@@ -368,7 +384,7 @@ export default {
       else {
         return {
           unlock: true,
-          stageConditionsTotalCurrent: stage17.stageConditionsTotalCurrent + [0,10, 15, 21, 27, 31, 34][battista]
+          stageConditionsTotalCurrent: stage17.stageConditionsTotalCurrent + [0, 10, 15, 21, 27, 31, 34][battista]
         }
       }
     },
@@ -438,7 +454,7 @@ export default {
 body {
   font-size: 15px;
 }
-.title{
+.title {
   font-weight: bold;
   text-align: center;
   font-size: 20px;
@@ -448,10 +464,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   padding: 0.5em;
 }
-.option:nth-child(odd){
+.option:nth-child(odd) {
   background-color: #efefef;
 }
 .option-car {
@@ -463,7 +479,7 @@ body {
 }
 .radio-list {
   display: flex;
-  flex:1;
+  flex: 1;
   justify-content: space-between;
 }
 .radio-item {
@@ -472,16 +488,15 @@ body {
   }
   padding: 10px;
   border-radius: 6px;
-  
 }
-  .battista-car{
-    width: 6em;
+.battista-car {
+  width: 6em;
+}
+.battista-list {
+  > .radio-item {
+    padding: 0;
+    margin-left: 1em;
   }
-.battista-list{
-  >.radio-item{
-  padding: 0;
-  margin-left:1em;
-}
 }
 .radio-item--1-1 {
   background-color: #ddd;
@@ -505,7 +520,7 @@ body {
   width: 8em;
 }
 .stage-status {
-  width:6em;
+  width: 6em;
   text-align: end;
 }
 .stage-unlock {
@@ -515,58 +530,57 @@ body {
   width: 9em;
   text-align: end;
 }
-.radio-label{
+.radio-label {
   margin-left: 0.2em;
 }
 .option-list,
-.stage-list{
+.stage-list {
   max-width: 600px;
-  flex:1;
-  width:100%;
+  flex: 1;
+  width: 100%;
 }
-.content{
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.qr-area{
+.qr-area {
   display: flex;
   align-items: center;
-  margin:0 0 1em 1em;
+  margin: 0 0 1em 1em;
 }
 
-.qr-desc{
+.qr-desc {
   margin-left: 2em;
 }
 
-@media screen and (min-width:750px) {
-  .content{
+@media screen and (min-width: 750px) {
+  .content {
     flex-direction: row;
     justify-content: space-between;
-    max-width:1210px;
-    margin:0 auto;
+    max-width: 1210px;
+    margin: 0 auto;
     align-items: flex-start;
   }
-  .stage-list{
+  .stage-list {
     margin-top: 0;
   }
 }
 
-.note{
+.note {
   text-align: center;
-  margin:1em 0
+  margin: 1em 0;
 }
 
-.stage-image-wrapper{
+.stage-image-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.stage-image{
-  width:100%;
+.stage-image {
+  width: 100%;
   max-width: 1210px;
 }
-
 </style>
