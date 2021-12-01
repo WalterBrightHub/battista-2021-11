@@ -1,19 +1,5 @@
-# battista-simple
+# battista 特赛小助手
 
-## Project setup
-```
-npm install
-```
+一个小工具，模拟狂野飙车9国际服中Battista特殊赛事的过程。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[线上地址](https://walterbright.cc/pages/battista/)
